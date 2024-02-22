@@ -1,0 +1,13 @@
+.wrap {
+  border: 3px dotted rgb(224, 121, 155);
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+}
+
+.tytle {
+  color: darkblue;
+  text-align: center;
+  border-bottom: 5px solid rgb(217, 32, 72);
+  padding-bottom: 20px;
+}

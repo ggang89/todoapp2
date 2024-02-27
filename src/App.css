@@ -21,3 +21,13 @@
   flex:1;
   margin-right: 5px;
 }
+.todoList{
+  display: flex;
+  align-items: center;
+}
+.listText{
+  flex:1;
+}
+.btn{
+  margin-right: 5px;
+}

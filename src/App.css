@@ -1,13 +1,23 @@
 .wrap {
-  border: 3px dotted rgb(224, 121, 155);
+  /* border: 3px dotted rgb(224, 121, 155); */
   width: 600px;
-  height: 600px;
+  height: 100vh;
   margin: 0 auto;
 }
 
 .tytle {
   color: darkblue;
   text-align: center;
-  border-bottom: 5px solid rgb(217, 32, 72);
+  border-bottom: 3px solid rgb(217, 32, 72);
   padding-bottom: 20px;
+}
+.inputBox {
+  border-bottom: 3px solid rgb(217, 32, 72);
+  padding: 0 20px 20px;
+  display: flex;
+ 
+}
+.inputAdd {
+  flex:1;
+  margin-right: 5px;
 }

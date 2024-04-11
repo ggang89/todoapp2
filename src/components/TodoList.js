@@ -7,6 +7,19 @@ function TodoList() {
     todoTitle: "리액트 공부",
     isEditing: false,
   });
+  const [todoList, setTodoList] = useState([
+    {
+      id: "uniqeKey",
+      //id값에 쓸 수 있는거?
+      todoTitle: "리액트 배우기",
+      isEditing: false,
+    },
+    {
+      id: "uniqeKey2",
+      todoTitle: "자바스크립트 배우기",
+      isEditing: false,
+    },
+  ]);
 
   const edit = () => {
     setTodo({ ...todo, isEditing: !todo.isEditing });
@@ -17,12 +30,16 @@ function TodoList() {
 
   return (
     <ul>
-      <Todo
+      {todoList.map((t)=>(
+        <Todo
+        key={t.id}
         edit={edit}
         handleText={handleText}
-        isEditing={todo.isEditing}
-        todoTitle={todo.todoTitle}
+        isEditing={t.isEditing}
+        todoTitle={t.todoTitle}
       />
+      ))}
+      
 
       {/* <li className="todoList">
           {todo.isEditing ? (

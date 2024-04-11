@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import Todo from "./Todo";
 
 function TodoList() {
   const [todo, setTodo] = useState({
@@ -16,22 +17,12 @@ function TodoList() {
 
   return (
     <ul>
-      <li className="todoList">
-        {todo.isEditing ? (
-          <>
-            <input value={todo.todoTitle} onChange={handleText} />
-            <button onClick={edit}>수정</button>
-          </>
-        ) : (
-          <>
-            <p className="listText">{todo.todoTitle}</p>
-            <button className="btn" onClick={edit}>
-              수정
-            </button>
-            <button>삭제</button>
-          </>
-        )}
-      </li>
+      <Todo
+        edit={edit}
+        handleText={handleText}
+        isEditing={todo.isEditing}
+        todoTitle={todo.todoTitle}
+      />
 
       {/* <li className="todoList">
           {todo.isEditing ? (

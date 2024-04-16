@@ -1,6 +1,6 @@
 import React from "react";
 
-function Todo({ edit, handleText, todoTitle, isEditing }) {
+function Todo({ edit, remove, handleText, todoTitle, isEditing }) {
   //왜 갑자기 todo.isEditing에서 그냥 isEditing이 됐지?
   //=>props이름이라서!
   return (
@@ -16,7 +16,7 @@ function Todo({ edit, handleText, todoTitle, isEditing }) {
           <button className="btn" onClick={edit}>
             수정
           </button>
-          <button>삭제</button>
+          <button onClick={remove}>삭제</button>
         </>
       )}
     </li>

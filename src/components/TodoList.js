@@ -6,10 +6,6 @@ import { v4 as uuidv4 } from "uuid";
 function TodoList() {
   const [addText, setAddText] = useState("");
 
-  const [todo, setTodo] = useState({
-    todoTitle: "리액트 공부",
-    isEditing: false,
-  });
   const [todoList, setTodoList] = useState([
     {
       id: "uniqeKey",
@@ -22,6 +18,19 @@ function TodoList() {
       isEditing: false,
     },
   ]);
+  const removeInList = (id) => {
+    const newArr = todoList.map((t) => {
+      if (id === t.id) {
+        return { ...!t, isEditing: undefined };
+        //list에서 없애기
+        //수정,삭제버튼이 안 사라진다...
+        //버튼까지가 t값 아닌가?
+      } else {
+        return t;
+      }
+    });
+    setTodoList(newArr);
+  };
 
   const editInList = (id) => {
     const newArr = todoList.map((t) => {
@@ -75,31 +84,12 @@ function TodoList() {
           <Todo
             key={t.id}
             edit={() => editInList(t.id)}
+            remove={() => removeInList(t.id)}
             handleText={(e) => handleTextInList(e, t.id)}
             isEditing={t.isEditing}
             todoTitle={t.todoTitle}
           />
         ))}
-
-        {/* <li className="todoList">
-          {todo.isEditing ? (
-            <>
-            <input/>
-            <button onClick={edit}>수정</button>
-            </>
-          ) : (
-            <>
-              <p className="listText">노마드 강의 듣기</p>
-              <button className="btn" onClick={edit}>
-                수정
-              </button>
-              <button>삭제</button>
-            </>
-          )}
-        </li> */}
-        <li className="todoList">
-          <input className="updateTodo" value={todo.todoTitle}></input>
-        </li>
       </ul>
     </>
   );

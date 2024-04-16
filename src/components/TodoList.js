@@ -20,9 +20,6 @@ function TodoList() {
     },
   ]);
 
-  const edit = () => {
-    setTodo({ ...todo, isEditing: !todo.isEditing });
-  };
   const editInList = (id) => {
     const newArr = todoList.map((t) => {
       if (id === t.id) {
@@ -34,8 +31,15 @@ function TodoList() {
     });
     setTodoList(newArr);
   };
-  const handleText = (e) => {
-    setTodo({ ...todo, todoTitle: e.target.value });
+  const handleTextInList = (e, id) => {
+    const newText = todoList.map((t) => {
+      if (id === t.id) {
+        return { ...t, todoTitle: e.target.value };
+      } else {
+        return t;
+      }
+    });
+    setTodoList(newText);
   };
 
   return (
@@ -44,7 +48,7 @@ function TodoList() {
         <Todo
           key={t.id}
           edit={() => editInList(t.id)}
-          handleText={handleText}
+          handleText={(e) => handleTextInList(e, t.id)}
           isEditing={t.isEditing}
           todoTitle={t.todoTitle}
         />

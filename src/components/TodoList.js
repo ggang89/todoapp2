@@ -1,8 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import Todo from "./Todo";
+import { v4 as uuidv4 } from "uuid";
 
 function TodoList() {
+  const [addText, setAddText] = useState("");
+
   const [todo, setTodo] = useState({
     todoTitle: "리액트 공부",
     isEditing: false,
@@ -41,20 +44,44 @@ function TodoList() {
     });
     setTodoList(newText);
   };
+  const handleForm = (e) => {
+    setAddText(e.target.value);
+  };
 
+  const handleAdd = () => {
+    const newArr = {
+      todoTitle: addText,
+      id: uuidv4(),
+      isEditing: false,
+    };
+    setTodoList([...todoList, newArr]);
+  };
   return (
-    <ul>
-      {todoList.map((t) => (
-        <Todo
-          key={t.id}
-          edit={() => editInList(t.id)}
-          handleText={(e) => handleTextInList(e, t.id)}
-          isEditing={t.isEditing}
-          todoTitle={t.todoTitle}
-        />
-      ))}
+    <>
+      <h1 className="title">To Do App (version.2)</h1>
 
-      {/* <li className="todoList">
+      <div className="inputBox">
+        <input
+          className="inputAdd"
+          type="text"
+          value={addText}
+          placeholder="할 일을 입력하세요"
+          onChange={handleForm}
+        ></input>
+        <button onClick={handleAdd}>추가 </button>
+      </div>
+      <ul>
+        {todoList.map((t) => (
+          <Todo
+            key={t.id}
+            edit={() => editInList(t.id)}
+            handleText={(e) => handleTextInList(e, t.id)}
+            isEditing={t.isEditing}
+            todoTitle={t.todoTitle}
+          />
+        ))}
+
+        {/* <li className="todoList">
           {todo.isEditing ? (
             <>
             <input/>
@@ -70,10 +97,11 @@ function TodoList() {
             </>
           )}
         </li> */}
-      <li className="todoList">
-        <input className="updateTodo" value={todo.todoTitle}></input>
-      </li>
-    </ul>
+        <li className="todoList">
+          <input className="updateTodo" value={todo.todoTitle}></input>
+        </li>
+      </ul>
+    </>
   );
 }
 

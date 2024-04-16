@@ -10,7 +10,6 @@ function TodoList() {
   const [todoList, setTodoList] = useState([
     {
       id: "uniqeKey",
-      //id값에 쓸 수 있는거?
       todoTitle: "리액트 배우기",
       isEditing: false,
     },
@@ -24,22 +23,32 @@ function TodoList() {
   const edit = () => {
     setTodo({ ...todo, isEditing: !todo.isEditing });
   };
+  const editInList = (id) => {
+    const newArr = todoList.map((t) => {
+      if (id === t.id) {
+        return { ...t, isEditing: !t.isEditing };
+      } else {
+        return t;
+      }
+      //받은 id값과 일치하는 id의 list 내용을 바꿔준다.
+    });
+    setTodoList(newArr);
+  };
   const handleText = (e) => {
     setTodo({ ...todo, todoTitle: e.target.value });
   };
 
   return (
     <ul>
-      {todoList.map((t)=>(
+      {todoList.map((t) => (
         <Todo
-        key={t.id}
-        edit={edit}
-        handleText={handleText}
-        isEditing={t.isEditing}
-        todoTitle={t.todoTitle}
-      />
+          key={t.id}
+          edit={() => editInList(t.id)}
+          handleText={handleText}
+          isEditing={t.isEditing}
+          todoTitle={t.todoTitle}
+        />
       ))}
-      
 
       {/* <li className="todoList">
           {todo.isEditing ? (
